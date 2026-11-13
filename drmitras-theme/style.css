@@ -1,0 +1,46 @@
+/*
+Theme Name: Dr. Mitra's Homeopathy Clinic & Nano-Medicine
+Theme URI: https://www.drmitras.com/
+Author: Dr. Somenath Mitra Practice
+Author URI: https://www.drmitras.com/
+Description: Complete, production-grade WordPress theme for Dr. Mitra's Multispeciality Homeopathy Clinic & Research. Features scientific nano-medicine protocols, interactive conditions catalog, documented clinical case studies with biochemical metrics, multi-chamber appointment scheduler, and responsive medical design.
+Version: 1.0.0
+Tested up to: 6.7
+Requires at least: 6.0
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: drmitras-theme
+Tags: medical, clinic, healthcare, doctor, appointment-booking, responsive, clean, accessibility-ready, custom-menu, featured-images
+*/
+
+/* Core imports and font rules are bundled in assets/css/main.css */
+@import url("assets/css/main.css");
+
+/* WordPress Core Alignment & Layout Classes */
+.alignwide {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.alignfull {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+.aligncenter {
+  display: block;
+  margin: 0 auto;
+}
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+}

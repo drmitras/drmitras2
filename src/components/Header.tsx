@@ -1,0 +1,182 @@
+import React, { useState } from 'react';
+import { Menu, X, PhoneCall, Calendar, Lock, FileArchive } from 'lucide-react';
+import { CLINIC_CONTACT } from '../data/clinicData';
+
+interface HeaderProps {
+  onOpenBooking: () => void;
+  onOpenAdmin: () => void;
+  onOpenWordPressDownload?: () => void;
+  activeSection: string;
+}
+
+export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenAdmin, onOpenWordPressDownload }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: 'Conditions & Care', href: '#conditions' },
+    { label: 'About Dr. Mitra', href: '#about-doctor' },
+    { label: 'Nano-Research', href: '#research' },
+    { label: 'Case Studies', href: '#case-studies' },
+    { label: 'Clinic Locations', href: '#locations' },
+  ];
+
+  return (
+    <header className="sticky top-0 z-50 bg-stone-50/95 backdrop-blur-md border-b border-stone-200/80 transition-colors">
+      {/* Top Clinical Announcement Strip */}
+      <div className="bg-stone-900 text-stone-200 text-xs py-1.5 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 truncate">
+            <span className="font-semibold text-emerald-400">Dr. Mitra's® Practice</span>
+            <span className="hidden sm:inline text-stone-400">·</span>
+            <span className="hidden sm:inline text-stone-300">National Institute of Homeopathy Alumnus</span>
+            <span className="hidden md:inline text-stone-400">·</span>
+            <span className="hidden md:inline text-stone-300">Kolkata & Bangkok Clinics</span>
+          </div>
+          <div className="flex items-center gap-4 shrink-0 text-stone-300">
+            {onOpenWordPressDownload && (
+              <button
+                onClick={onOpenWordPressDownload}
+                className="hidden md:flex items-center gap-1.5 text-[11px] text-emerald-300 hover:text-white font-medium transition-colors cursor-pointer bg-white/10 px-2.5 py-0.5 rounded"
+                title="Download complete WordPress Theme ZIP file"
+              >
+                <FileArchive className="w-3 h-3 text-emerald-300" />
+                <span>WP Theme .ZIP</span>
+              </button>
+            )}
+            <a
+              href={`tel:${CLINIC_CONTACT.primaryPhone.replace(/\s+/g, '')}`}
+              className="flex items-center gap-1.5 hover:text-white transition-colors"
+            >
+              <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="font-medium tabular-nums">{CLINIC_CONTACT.primaryPhone}</span>
+            </a>
+            <span className="text-stone-600 hidden sm:inline">|</span>
+            <button
+              onClick={onOpenAdmin}
+              className="hidden sm:flex items-center gap-1.5 text-[11px] text-stone-400 hover:text-emerald-300 transition-colors cursor-pointer"
+              title="Doctor & Chamber Administration Login"
+            >
+              <Lock className="w-3 h-3 text-emerald-400/80" />
+              <span>Admin / Doctor Login</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Primary Top Bar (Strict 3-zone Contract) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-8">
+        {/* Zone 1: Brand title wordmark */}
+        <a
+          href="#"
+          className="hover:text-emerald-900 transition-colors whitespace-nowrap shrink-0 flex items-center"
+        >
+          <span className="font-jashvee text-[27px] sm:text-[30px] font-black tracking-[-1px] text-stone-900">Dr. Mitra's</span>
+          <sup className="text-xs text-emerald-700 font-bold ml-0.5">®</sup>
+        </a>
+
+        {/* Zone 2: 4-5 single-line clean navigation links */}
+        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-stone-700">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="hover:text-emerald-900 transition-colors whitespace-nowrap shrink-0 relative py-1 hover:border-b-2 hover:border-emerald-800"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Zone 3: 1 primary action */}
+        <div className="hidden sm:flex items-center gap-3 shrink-0">
+          {onOpenWordPressDownload && (
+            <button
+              onClick={onOpenWordPressDownload}
+              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300/80 active:scale-[0.98] transition-all rounded-md shadow-2xs whitespace-nowrap shrink-0 cursor-pointer"
+              title="Download full WordPress theme zip"
+            >
+              <FileArchive className="w-3.5 h-3.5 text-emerald-800" />
+              <span>WP Theme .ZIP</span>
+            </button>
+          )}
+          <button
+            onClick={onOpenBooking}
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-emerald-900 hover:bg-emerald-800 active:scale-[0.98] transition-all rounded-md shadow-sm whitespace-nowrap shrink-0 cursor-pointer"
+          >
+            <Calendar className="w-4 h-4" />
+            Book Consultation
+          </button>
+        </div>
+
+        {/* Mobile menu button */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            onClick={onOpenBooking}
+            className="sm:hidden px-3 py-1.5 text-xs font-medium text-white bg-emerald-900 rounded-md"
+          >
+            Consult
+          </button>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+            className="p-2 text-stone-700 hover:text-stone-900 focus:outline-none"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden border-t border-stone-200 bg-stone-50 px-4 pt-3 pb-6 space-y-3">
+          <div className="flex flex-col space-y-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 text-base font-medium text-stone-800 hover:text-emerald-900 border-b border-stone-100"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <div className="pt-2 space-y-2">
+            {onOpenWordPressDownload && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenWordPressDownload();
+                }}
+                className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-emerald-950 bg-emerald-100 rounded-md border border-emerald-300"
+              >
+                <FileArchive className="w-4 h-4 text-emerald-800" />
+                Download WordPress Theme (.zip)
+              </button>
+            )}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenBooking();
+              }}
+              className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-emerald-900 rounded-md"
+            >
+              <Calendar className="w-4 h-4" />
+              Schedule Online or In-Clinic Visit
+            </button>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenAdmin();
+              }}
+              className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-stone-700 bg-stone-200/80 rounded-md hover:bg-stone-300"
+            >
+              <Lock className="w-3.5 h-3.5" />
+              Physician & Staff Portal
+            </button>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};

@@ -1,0 +1,8 @@
+{
+  "name": "Dr. Mitra's | Research-Based Homeopathy & Nano-Medicine",
+  "description": "Official healthcare and research portal of Dr. Somenath Mitra (BHMS, NIH). Advanced clinical homeopathy and nano-medicine protocols for chronic, oncology, autoimmune, and complex health conditions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
