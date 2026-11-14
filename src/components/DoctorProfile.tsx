@@ -67,7 +67,7 @@ export const DoctorProfile: React.FC<DoctorProfileProps> = ({ onOpenBooking }) =
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500 font-mono">
-                  <span>Reg. Practitioner #18422</span>
+                  <span>Reg. Practitioner 21794</span>
                   <span>Kolkata · Bangkok</span>
                 </div>
               </div>

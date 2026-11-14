@@ -184,18 +184,6 @@ export const CLINIC_LOCATIONS: ClinicLocation[] = [
     consultationModes: ['In-Person Consultations', 'Diagnostic Case Review', 'On-Site Dispensary'],
   },
   {
-    id: 'kolkata-dakshindari',
-    name: "Dr. Mitra's Clinic — Dakshindari / VIP Road",
-    city: 'Kolkata',
-    country: 'India',
-    address: 'Dakshindari Road, Near Lake Town VIP Road Junction, Kolkata 700048, West Bengal',
-    landmark: 'Adjacent to Ultadanga / Lake Town Footbridge',
-    timings: 'Tuesday, Thursday, Saturday: 4:00 PM – 8:00 PM (IST)',
-    phone: '+91 98300 24891',
-    type: 'Branch Clinic',
-    consultationModes: ['In-Person Consultations', 'Chronic Case Follow-ups', 'Direct Medicine Dispatch'],
-  },
-  {
     id: 'bangkok-liaison',
     name: 'Dr. Mitra’s International Liaison & Telehealth Desk',
     city: 'Bangkok',

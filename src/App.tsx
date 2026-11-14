@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ConditionsSection } from './components/ConditionsSection';
@@ -11,44 +11,14 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
-import { AdminPortal } from './components/AdminPortal';
-import { WordPressDownloadModal } from './components/WordPressDownloadModal';
 import { CLINIC_CONTACT } from './data/clinicData';
-import { MessageSquare, Calendar } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const [isWpDownloadOpen, setIsWpDownloadOpen] = useState(false);
   const [selectedCondition, setSelectedCondition] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
-  const [activeSection, setActiveSection] = useState('home');
-
-  useEffect(() => {
-    // Check if URL hash is #admin or #login or #portal
-    const checkHash = () => {
-      const hash = window.location.hash.toLowerCase();
-      if (hash === '#admin' || hash === '#login' || hash === '#doctor' || hash === '#portal') {
-        setIsAdminOpen(true);
-      }
-    };
-    checkHash();
-    window.addEventListener('hashchange', checkHash);
-
-    // Keyboard shortcut: Ctrl + Shift + A (or Cmd + Shift + A) to open admin
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
-        e.preventDefault();
-        setIsAdminOpen((prev) => !prev);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('hashchange', checkHash);
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
+  const [activeSection] = useState('home');
 
   const handleOpenBooking = (condition = '', location = '') => {
     setSelectedCondition(condition);
@@ -68,8 +38,6 @@ export default function App() {
       {/* Primary Navigation Bar (3-Zone Contract) */}
       <Header
         onOpenBooking={() => handleOpenBooking()}
-        onOpenAdmin={() => setIsAdminOpen(true)}
-        onOpenWordPressDownload={() => setIsWpDownloadOpen(true)}
         activeSection={activeSection}
       />
 
@@ -117,8 +85,6 @@ export default function App() {
       {/* Compliant Medical Footer */}
       <Footer
         onOpenBooking={() => handleOpenBooking()}
-        onOpenAdmin={() => setIsAdminOpen(true)}
-        onOpenWordPressDownload={() => setIsWpDownloadOpen(true)}
       />
 
       {/* Interactive Consultation Booking Engine */}
@@ -127,19 +93,6 @@ export default function App() {
         onClose={() => setIsBookingOpen(false)}
         preselectedCondition={selectedCondition}
         preselectedLocation={selectedLocation}
-      />
-
-      {/* Physician & Chamber Administration Portal */}
-      <AdminPortal
-        isOpen={isAdminOpen}
-        onClose={() => setIsAdminOpen(false)}
-        userEmail="drsunshine@gmail.com"
-      />
-
-      {/* WordPress Theme Package (.ZIP) Download & Installation Modal */}
-      <WordPressDownloadModal
-        isOpen={isWpDownloadOpen}
-        onClose={() => setIsWpDownloadOpen(false)}
       />
 
       {/* Floating WhatsApp Quick Clinical Assist Pill (Quiet bottom right) */}

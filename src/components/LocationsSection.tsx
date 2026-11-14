@@ -1,6 +1,10 @@
 import React from 'react';
 import { MapPin, Clock, Phone, Globe, Navigation, Building2 } from 'lucide-react';
 import { CLINIC_LOCATIONS, CLINIC_CONTACT } from '../data/clinicData';
+import clinicInteriorImage from '../assets/images/clinic_location_7XO35d.jpg';
+
+const SHAREPOINT_LOCATION_IMAGE_URL =
+  'https://nanomedz4u-my.sharepoint.com/:i:/g/personal/nanomedz_nanomedz4u_onmicrosoft_com/IQDeVX9QRgR2R5bL1BR2NFoSAcW1LQHrhVMV6eF0ZeGhWkI?e=7XO35d&download=1';
 
 interface LocationsSectionProps {
   onSelectLocationForBooking: (locationName: string) => void;
@@ -31,7 +35,12 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
           <div className="lg:col-span-5 space-y-4">
             <div className="relative rounded-lg overflow-hidden border border-stone-300 shadow-sm bg-white">
               <img
-                src="/src/assets/images/clinic_interior_kolkata_1794455904060.jpg"
+                src={SHAREPOINT_LOCATION_IMAGE_URL}
+                onError={(e) => {
+                  if (e.currentTarget.src !== clinicInteriorImage) {
+                    e.currentTarget.src = clinicInteriorImage;
+                  }
+                }}
                 alt="Dr. Mitra's tranquil clinic interior and holistic consultation suite"
                 referrerPolicy="no-referrer"
                 className="w-full aspect-4/3 object-cover"

@@ -93,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreCases }) => 
               <div className="absolute bottom-0 inset-x-0 p-5 text-white">
                 <div className="flex items-center gap-2 text-xs font-medium text-emerald-300 mb-1">
                   <HeartPulse className="w-3.5 h-3.5" />
-                  <span>Kolkata Salt Lake & VIP Road Centers</span>
+                  <span>Kolkata Salt Lake & Bangkok Telehealth</span>
                 </div>
                 <p className="text-sm font-medium text-stone-100">
                   Patient-centered medical environment dedicated to root-cause restoration and long-term vitality.

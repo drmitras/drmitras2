@@ -19,11 +19,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 }) => {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [formData, setFormData] = useState<BookingFormData>({
-    consultationType: preselectedLocation.includes('Dakshindari')
-      ? 'clinic-dakshindari'
-      : preselectedLocation.includes('Bangkok') || preselectedLocation.includes('Telehealth')
-      ? 'virtual-video'
-      : 'clinic-saltlake',
+    consultationType:
+      preselectedLocation.includes('Bangkok') || preselectedLocation.includes('Telehealth')
+        ? 'virtual-video'
+        : 'clinic-saltlake',
     conditionCategory: preselectedCondition || 'Psoriasis, Eczema & Chronic Dermatoses',
     patientName: '',
     age: '',
@@ -46,9 +45,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       setFormData((prev) => ({ ...prev, conditionCategory: preselectedCondition }));
     }
     if (preselectedLocation) {
-      if (preselectedLocation.includes('Dakshindari')) {
-        setFormData((prev) => ({ ...prev, consultationType: 'clinic-dakshindari' }));
-      } else if (preselectedLocation.includes('Bangkok')) {
+      if (preselectedLocation.includes('Bangkok')) {
         setFormData((prev) => ({ ...prev, consultationType: 'virtual-video' }));
       } else {
         setFormData((prev) => ({ ...prev, consultationType: 'clinic-saltlake' }));
@@ -160,8 +157,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   <span className="font-semibold text-stone-900">
                     {formData.consultationType === 'clinic-saltlake'
                       ? 'In-Person: Salt Lake City Clinic, Kolkata'
-                      : formData.consultationType === 'clinic-dakshindari'
-                      ? 'In-Person: Dakshindari / VIP Road Clinic, Kolkata'
                       : 'High-Definition Telehealth Video Consultation'}
                   </span>
                 </div>
@@ -219,7 +214,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     <label className="block text-xs font-bold uppercase tracking-wider text-stone-800 mb-2">
                       Select Preferred Consultation Setting
                     </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       <label
                         className={`p-3 rounded-md border text-left cursor-pointer transition-all ${
                           formData.consultationType === 'clinic-saltlake'
@@ -236,26 +231,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                           className="sr-only"
                         />
                         <div className="text-xs font-bold text-stone-900">Salt Lake Clinic</div>
-                        <div className="text-[11px] text-stone-500 mt-0.5">Kolkata Sector 1</div>
-                      </label>
-
-                      <label
-                        className={`p-3 rounded-md border text-left cursor-pointer transition-all ${
-                          formData.consultationType === 'clinic-dakshindari'
-                            ? 'bg-emerald-50/50 border-emerald-900 ring-1 ring-emerald-900/10'
-                            : 'bg-white border-stone-200 hover:bg-stone-50'
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name="consultationType"
-                          value="clinic-dakshindari"
-                          checked={formData.consultationType === 'clinic-dakshindari'}
-                          onChange={() => setFormData({ ...formData, consultationType: 'clinic-dakshindari' })}
-                          className="sr-only"
-                        />
-                        <div className="text-xs font-bold text-stone-900">VIP Road Clinic</div>
-                        <div className="text-[11px] text-stone-500 mt-0.5">Lake Town Junction</div>
+                        <div className="text-[11px] text-stone-500 mt-0.5">GD-16, Sector 3, Kolkata</div>
                       </label>
 
                       <label

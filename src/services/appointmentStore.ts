@@ -72,7 +72,7 @@ export const INITIAL_APPOINTMENTS: AdminAppointmentRecord[] = [
     id: 'apt-104',
     referenceCode: 'DM-619283',
     submittedAt: '2026-11-09T18:30:00Z',
-    consultationType: 'clinic-dakshindari',
+    consultationType: 'clinic-saltlake',
     conditionCategory: 'Bronchial Asthma & Chronic Allergic Rhinitis',
     patientName: 'Anushka Sen (Child)',
     age: '8',

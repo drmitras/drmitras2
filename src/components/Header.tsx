@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { Menu, X, PhoneCall, Calendar, Lock, FileArchive } from 'lucide-react';
+import { Menu, X, PhoneCall, Calendar } from 'lucide-react';
 import { CLINIC_CONTACT } from '../data/clinicData';
 
 interface HeaderProps {
   onOpenBooking: () => void;
-  onOpenAdmin: () => void;
-  onOpenWordPressDownload?: () => void;
   activeSection: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenAdmin, onOpenWordPressDownload }) => {
+export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -33,16 +31,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenAdmin, onOp
             <span className="hidden md:inline text-stone-300">Kolkata & Bangkok Clinics</span>
           </div>
           <div className="flex items-center gap-4 shrink-0 text-stone-300">
-            {onOpenWordPressDownload && (
-              <button
-                onClick={onOpenWordPressDownload}
-                className="hidden md:flex items-center gap-1.5 text-[11px] text-emerald-300 hover:text-white font-medium transition-colors cursor-pointer bg-white/10 px-2.5 py-0.5 rounded"
-                title="Download complete WordPress Theme ZIP file"
-              >
-                <FileArchive className="w-3 h-3 text-emerald-300" />
-                <span>WP Theme .ZIP</span>
-              </button>
-            )}
             <a
               href={`tel:${CLINIC_CONTACT.primaryPhone.replace(/\s+/g, '')}`}
               className="flex items-center gap-1.5 hover:text-white transition-colors"
@@ -50,15 +38,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenAdmin, onOp
               <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
               <span className="font-medium tabular-nums">{CLINIC_CONTACT.primaryPhone}</span>
             </a>
-            <span className="text-stone-600 hidden sm:inline">|</span>
-            <button
-              onClick={onOpenAdmin}
-              className="hidden sm:flex items-center gap-1.5 text-[11px] text-stone-400 hover:text-emerald-300 transition-colors cursor-pointer"
-              title="Doctor & Chamber Administration Login"
-            >
-              <Lock className="w-3 h-3 text-emerald-400/80" />
-              <span>Admin / Doctor Login</span>
-            </button>
           </div>
         </div>
       </div>
@@ -88,17 +67,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenAdmin, onOp
         </nav>
 
         {/* Zone 3: 1 primary action */}
-        <div className="hidden sm:flex items-center gap-3 shrink-0">
-          {onOpenWordPressDownload && (
-            <button
-              onClick={onOpenWordPressDownload}
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300/80 active:scale-[0.98] transition-all rounded-md shadow-2xs whitespace-nowrap shrink-0 cursor-pointer"
-              title="Download full WordPress theme zip"
-            >
-              <FileArchive className="w-3.5 h-3.5 text-emerald-800" />
-              <span>WP Theme .ZIP</span>
-            </button>
-          )}
+        <div className="hidden sm:flex items-center gap-4 shrink-0">
           <button
             onClick={onOpenBooking}
             className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-emerald-900 hover:bg-emerald-800 active:scale-[0.98] transition-all rounded-md shadow-sm whitespace-nowrap shrink-0 cursor-pointer"
@@ -142,18 +111,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenAdmin, onOp
             ))}
           </div>
           <div className="pt-2 space-y-2">
-            {onOpenWordPressDownload && (
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenWordPressDownload();
-                }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-emerald-950 bg-emerald-100 rounded-md border border-emerald-300"
-              >
-                <FileArchive className="w-4 h-4 text-emerald-800" />
-                Download WordPress Theme (.zip)
-              </button>
-            )}
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
@@ -163,16 +120,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenAdmin, onOp
             >
               <Calendar className="w-4 h-4" />
               Schedule Online or In-Clinic Visit
-            </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAdmin();
-              }}
-              className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-stone-700 bg-stone-200/80 rounded-md hover:bg-stone-300"
-            >
-              <Lock className="w-3.5 h-3.5" />
-              Physician & Staff Portal
             </button>
           </div>
         </div>

@@ -4,11 +4,9 @@ import { CLINIC_CONTACT } from '../data/clinicData';
 
 interface FooterProps {
   onOpenBooking: () => void;
-  onOpenAdmin: () => void;
-  onOpenWordPressDownload?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenBooking, onOpenAdmin, onOpenWordPressDownload }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
   return (
     <footer className="bg-stone-950 text-stone-300 border-t border-stone-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-18">
@@ -67,24 +65,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking, onOpenAdmin, onOp
                   Schedule Consultation
                 </button>
               </li>
-              <li>
-                <button
-                  onClick={onOpenAdmin}
-                  className="text-emerald-400/90 hover:text-emerald-300 font-medium transition-colors text-left flex items-center gap-1.5 cursor-pointer"
-                >
-                  <span>Physician & Staff Portal (Login)</span>
-                </button>
-              </li>
-              {onOpenWordPressDownload && (
-                <li>
-                  <button
-                    onClick={onOpenWordPressDownload}
-                    className="text-emerald-300 hover:text-white font-medium transition-colors text-left flex items-center gap-1.5 cursor-pointer"
-                  >
-                    <span>Download WordPress Theme (.zip)</span>
-                  </button>
-                </li>
-              )}
             </ul>
           </div>
 
@@ -103,14 +83,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking, onOpenAdmin, onOp
               </div>
               <div className="flex items-start gap-2">
                 <Mail className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                <a href={`mailto:${CLINIC_CONTACT.email}`} className="hover:text-white transition-colors">
-                  {CLINIC_CONTACT.email}
+                <a href="mailto:drmitras4u@gmail.com" className="hover:text-white transition-colors">
+                  drmitras4u@gmail.com
                 </a>
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                 <span className="text-[11px] leading-relaxed">
-                  CF-Block, Sector 1, Salt Lake City, Kolkata 700064, West Bengal, India
+                  GD-16, Sector-3, Salt Lake City, Kolkata - 700091
                 </span>
               </div>
             </div>
@@ -128,19 +108,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking, onOpenAdmin, onOp
               © {new Date().getFullYear()} Dr. Mitra's® Multispeciality Homeopathy Clinic. All rights reserved.
             </div>
             <div className="flex items-center gap-4">
-              {onOpenWordPressDownload && (
-                <>
-                  <button onClick={onOpenWordPressDownload} className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors cursor-pointer">
-                    Download WP Theme (.zip)
-                  </button>
-                  <span aria-hidden="true">·</span>
-                </>
-              )}
               <span>National Institute of Homeopathy Alumnus</span>
-              <span aria-hidden="true">·</span>
-              <button onClick={onOpenAdmin} className="hover:text-emerald-400 transition-colors cursor-pointer">
-                Physician Login
-              </button>
               <span aria-hidden="true">·</span>
               <a href="#about-doctor" className="hover:text-stone-300 transition-colors">Privacy & Records Ethics</a>
             </div>

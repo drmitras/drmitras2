@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Microscope, Shield, Dna, FileCheck, Layers, Sparkles } from 'lucide-react';
+import researchLabImage from '../assets/images/nano_homeopathy_research_lab_1794455905369.jpg';
+
+const SHAREPOINT_RESEARCH_IMAGE_URL =
+  'https://nanomedz4u-my.sharepoint.com/:i:/g/personal/nanomedz_nanomedz4u_onmicrosoft_com/IQBsRRhB0AhdSI3HlHQmjWzRAUMPltTRAlMTJSvp4KI3KmU?e=vnpZz7&download=1';
 
 export const ResearchSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'nanoparticles' | 'hormesis' | 'sourcing' | 'monitoring'>('nanoparticles');
@@ -35,7 +39,12 @@ export const ResearchSection: React.FC = () => {
           <div className="lg:col-span-5 space-y-4">
             <div className="relative rounded-lg overflow-hidden border border-stone-200 shadow-sm bg-stone-100">
               <img
-                src="/src/assets/images/nano_homeopathy_research_lab_1794455905369.jpg"
+                src={SHAREPOINT_RESEARCH_IMAGE_URL}
+                onError={(e) => {
+                  if (e.currentTarget.src !== researchLabImage) {
+                    e.currentTarget.src = researchLabImage;
+                  }
+                }}
                 alt="Nano-medicine research laboratory testing botanical potentisations and high-dilution solutions"
                 referrerPolicy="no-referrer"
                 className="w-full aspect-4/3 object-cover"

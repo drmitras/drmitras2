@@ -50,7 +50,7 @@ export interface TestimonialItem {
 }
 
 export interface BookingFormData {
-  consultationType: 'clinic-saltlake' | 'clinic-dakshindari' | 'virtual-video' | 'phone';
+  consultationType: 'clinic-saltlake' | 'virtual-video' | 'phone';
   conditionCategory: string;
   patientName: string;
   age: string;
