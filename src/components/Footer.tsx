@@ -78,7 +78,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                 <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-white font-medium tabular-nums">{CLINIC_CONTACT.primaryPhone}</div>
-                  <div className="text-[11px] text-stone-500 tabular-nums">{CLINIC_CONTACT.altPhone}</div>
                 </div>
               </div>
               <div className="flex items-start gap-2">
