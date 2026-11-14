@@ -164,15 +164,6 @@ export const DoctorProfile: React.FC<DoctorProfileProps> = ({ onOpenBooking }) =
                 </div>
               </div>
             </div>
-
-            <div className="pt-2">
-              <button
-                onClick={onOpenBooking}
-                className="inline-flex items-center justify-center px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white bg-emerald-900 hover:bg-emerald-800 rounded-md transition-colors shadow-xs cursor-pointer"
-              >
-                Schedule Appointment With Dr. Mitra
-              </button>
-            </div>
           </div>
         </div>
       </div>

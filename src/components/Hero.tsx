@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, Award, HeartPulse, FileText } from 'lucide-react';
+import { ShieldCheck, Award, HeartPulse, FileText } from 'lucide-react';
 import { CLINIC_STATS } from '../data/clinicData';
 import heroClinicImage from '../assets/images/hero_dr_mitra_clinic_1794455903171.jpg';
 
@@ -52,14 +52,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreCases }) => 
 
             {/* Primary Action Buttons */}
             <div className="pt-2 flex flex-wrap items-center gap-4">
-              <button
-                onClick={onOpenBooking}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-emerald-900 hover:bg-emerald-800 active:scale-[0.99] transition-all rounded-md shadow-sm whitespace-nowrap shrink-0 cursor-pointer"
-              >
-                Schedule Consultation
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
               <button
                 onClick={onExploreCases}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-stone-700 bg-white hover:bg-stone-100 hover:text-stone-900 border border-stone-300 active:scale-[0.99] transition-all rounded-md whitespace-nowrap shrink-0 cursor-pointer"

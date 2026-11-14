@@ -101,12 +101,6 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
                       {loc.name}
                     </h3>
                   </div>
-                  <button
-                    onClick={() => onSelectLocationForBooking(loc.name)}
-                    className="self-start sm:self-center px-3.5 py-1.5 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded transition-colors whitespace-nowrap cursor-pointer"
-                  >
-                    Select Location
-                  </button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-stone-600">
