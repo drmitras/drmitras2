@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Activity, CheckCircle, ChevronRight, X, Clock, Users } from 'lucide-react';
-import { CONDITIONS } from '../data/clinicData';
+import { CONDITIONS, CLINIC_CONTACT } from '../data/clinicData';
 import { ConditionItem } from '../types';
 import { useLanguage } from '../i18n/LanguageContext';
 
@@ -111,8 +111,10 @@ export const ConditionsSection: React.FC<ConditionsSectionProps> = ({ onSelectCo
                 </button>
 
                 <button
-                  onClick={() => onSelectConditionForBooking(condition.name)}
-                  className="px-3 py-1.5 text-xs font-medium text-stone-700 bg-white hover:bg-stone-100 hover:text-stone-900 border border-stone-300 rounded transition-colors cursor-pointer"
+                  onClick={() => {
+                    window.location.href = `tel:${CLINIC_CONTACT.primaryPhone.replace(/\s+/g, '')}`;
+                  }}
+                  className="px-3 py-1.5 text-xs font-medium text-stone-700 bg-white hover:bg-stone-100 hover:text-stone-900 border border-stone-300 rounded transition-colors cursor-pointer whitespace-nowrap"
                 >
                   {t.conditions.bookCare}
                 </button>
