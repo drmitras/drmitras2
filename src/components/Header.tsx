@@ -66,17 +66,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           ))}
         </nav>
 
-        {/* Zone 3: 1 primary action */}
-        <div className="hidden sm:flex items-center gap-4 shrink-0">
-          <button
-            onClick={onOpenBooking}
-            className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-emerald-900 hover:bg-emerald-800 active:scale-[0.98] transition-all rounded-md shadow-sm whitespace-nowrap shrink-0 cursor-pointer"
-          >
-            <Calendar className="w-4 h-4" />
-            Book Consultation
-          </button>
-        </div>
-
         {/* Mobile menu button */}
         <div className="flex items-center gap-2 lg:hidden">
           <button
