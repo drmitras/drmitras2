@@ -69,12 +69,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
         {/* Mobile menu button */}
         <div className="flex items-center gap-2 lg:hidden">
           <button
-            onClick={onOpenBooking}
-            className="sm:hidden px-3 py-1.5 text-xs font-medium text-white bg-emerald-900 rounded-md"
-          >
-            Consult
-          </button>
-          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
             className="p-2 text-stone-700 hover:text-stone-900 focus:outline-none"
