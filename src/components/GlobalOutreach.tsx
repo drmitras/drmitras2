@@ -1,7 +1,10 @@
 import React from 'react';
-import { Globe, Heart, Award, Users2, Newspaper } from 'lucide-react';
+import { Globe, Heart, Award, Users2 } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export const GlobalOutreach: React.FC = () => {
+  const { t } = useLanguage();
+
   const initiatives = [
     {
       title: 'Thailand Ministry of Public Health',
@@ -39,15 +42,15 @@ export const GlobalOutreach: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <div className="flex items-center gap-2 text-xs font-medium text-emerald-400 tracking-wider uppercase mb-2">
-            <span>International Engagement & Philanthropy</span>
+            <span>{t.outreach.kickerLeft}</span>
             <span aria-hidden="true" className="text-stone-600">·</span>
-            <span>Global Public Health</span>
+            <span>{t.outreach.kickerRight}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Advancing Healing Across Borders
+            {t.outreach.heading}
           </h2>
           <p className="mt-3 text-base text-stone-400 leading-relaxed font-light">
-            Beyond private practice, Dr. Somenath Mitra has dedicated significant clinical time to governmental healthcare development, humanitarian medicine for underserved populations, and charitable foundations.
+            {t.outreach.description}
           </p>
         </div>
 
@@ -91,10 +94,10 @@ export const GlobalOutreach: React.FC = () => {
         <div className="mt-12 p-6 rounded-lg bg-stone-800/50 border border-stone-700 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="text-base font-bold text-white">
-              Dr. Somenath Mitra Homeopathy Foundation
+              {t.outreach.foundationTitle}
             </h4>
             <p className="text-xs text-stone-400 max-w-2xl font-light">
-              Dedicated to making research-based homeopathic nano-medicines accessible to financially disadvantaged communities, organizing free medical camps, and funding independent clinical trials.
+              {t.outreach.foundationDesc}
             </p>
           </div>
           <div className="shrink-0 text-xs text-stone-400 border border-stone-600 px-4 py-2 rounded">

@@ -1,23 +1,26 @@
 import React from 'react';
-import { Star, ShieldCheck, Quote } from 'lucide-react';
+import { Star, ShieldCheck } from 'lucide-react';
 import { TESTIMONIALS } from '../data/clinicData';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export const TestimonialsSection: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 sm:py-24 bg-white border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <div className="flex items-center gap-2 text-xs font-medium text-emerald-900 tracking-wider uppercase mb-2">
-            <span>Patient Perspectives & Outcomes</span>
+            <span>{t.testimonials.kickerLeft}</span>
             <span aria-hidden="true">·</span>
-            <span>Verified Recoveries</span>
+            <span>{t.testimonials.kickerRight}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
-            Trusted by Patients Across Continents
+            {t.testimonials.heading}
           </h2>
           <p className="mt-3 text-base text-stone-600 leading-relaxed font-light">
-            Read first-hand accounts from patients who found sustainable relief and restored quality of life under Dr. Somenath Mitra’s clinical care.
+            {t.testimonials.description}
           </p>
         </div>
 
@@ -40,7 +43,7 @@ export const TestimonialsSection: React.FC = () => {
                 </div>
 
                 <div className="text-xs font-semibold text-stone-700">
-                  Condition: {item.condition}
+                  {t.testimonials.conditionPrefix} {item.condition}
                 </div>
 
                 <blockquote className="text-stone-700 text-sm sm:text-base leading-relaxed italic font-serif font-medium">
@@ -62,7 +65,7 @@ export const TestimonialsSection: React.FC = () => {
                 {item.verifiedPatient && (
                   <div className="flex items-center gap-1 text-xs text-stone-500">
                     <ShieldCheck className="w-4 h-4 text-emerald-800" />
-                    <span>Verified Patient</span>
+                    <span>{t.testimonials.verifiedPatient}</span>
                   </div>
                 )}
               </div>

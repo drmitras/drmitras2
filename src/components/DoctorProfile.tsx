@@ -1,6 +1,7 @@
 import React from 'react';
 import { Award, BookOpen, Globe2, Heart, CheckCircle2 } from 'lucide-react';
 import drMitraPortraitImage from '../assets/images/regenerated_image_1794468808723.jpg';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const SHAREPOINT_DOCTOR_IMAGE_URL =
   'https://nanomedz4u-my.sharepoint.com/:i:/g/personal/nanomedz_nanomedz4u_onmicrosoft_com/IQDiBidA-hnfQI8g8q_ky_cLATjzUTUhPyjV2HpGz2xoDGI?e=QXN6Qn&download=1';
@@ -9,7 +10,9 @@ interface DoctorProfileProps {
   onOpenBooking: () => void;
 }
 
-export const DoctorProfile: React.FC<DoctorProfileProps> = ({ onOpenBooking }) => {
+export const DoctorProfile: React.FC<DoctorProfileProps> = () => {
+  const { t } = useLanguage();
+
   const credentials = [
     {
       title: 'National Institute of Homeopathy (NIH)',
@@ -63,12 +66,12 @@ export const DoctorProfile: React.FC<DoctorProfileProps> = ({ onOpenBooking }) =
                   BHMS (National Institute of Homeopathy, Kolkata)
                 </div>
                 <div className="text-xs text-stone-600 mt-2">
-                  Founder & Chief Medical Consultant · 30+ Years Clinical Research Experience
+                  {t.doctor.roleSubtitle}
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500 font-mono">
-                  <span>Reg. Practitioner 21794</span>
-                  <span>Kolkata · Bangkok</span>
+                  <span>{t.doctor.regNumber}</span>
+                  <span>{t.doctor.cities}</span>
                 </div>
               </div>
             </div>
@@ -76,10 +79,10 @@ export const DoctorProfile: React.FC<DoctorProfileProps> = ({ onOpenBooking }) =
             {/* Doctor's Stated Philosophy Quote Box */}
             <div className="bg-white border border-stone-200 rounded-lg p-5 shadow-xs space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-stone-500 block">
-                Clinical Philosophy
+                {t.doctor.philosophyLabel}
               </span>
               <blockquote className="text-base italic font-serif text-stone-800 leading-relaxed font-medium">
-                “True medical healing does not consist of subduing symptoms with escalating pharmaceutical doses. It requires deciphering the body’s innate biological signals and administering calibrated micro-stimuli to trigger permanent cellular repair.”
+                {t.doctor.philosophyQuote}
               </blockquote>
               <div className="text-xs text-stone-600 font-medium pt-1 text-right">
                 — Dr. Somenath Mitra
@@ -91,30 +94,24 @@ export const DoctorProfile: React.FC<DoctorProfileProps> = ({ onOpenBooking }) =
           <div className="lg:col-span-7 space-y-8">
             <div>
               <div className="flex items-center gap-2 text-xs font-medium text-emerald-900 tracking-wider uppercase mb-2">
-                <span>The Physician Behind The Practice</span>
+                <span>{t.doctor.kickerLeft}</span>
                 <span aria-hidden="true">·</span>
-                <span>Established 1998</span>
+                <span>{t.doctor.kickerRight}</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
-                Pioneering Evidence-Monitored Homeopathic Science
+                {t.doctor.heading}
               </h2>
               <div className="mt-4 space-y-4 text-stone-600 text-sm sm:text-base leading-relaxed font-light">
-                <p>
-                  With more than three decades dedicated to clinical practice and drug discovery research, <strong className="font-semibold text-stone-800">Dr. Somenath Mitra</strong> has treated over 18,500 patients grappling with chronic, autoimmune, and life-threatening medical conditions.
-                </p>
-                <p>
-                  Trained rigorously at the <strong className="font-semibold text-stone-800">National Institute of Homeopathy (NIH)</strong> in Kolkata—Asia’s largest central government teaching hospital for homeopathic medicine—Dr. Mitra spearheaded research bridging classical single-remedy constitutional analysis with modern ultra-dilution physics and nanomedicine.
-                </p>
-                <p>
-                  His clinical expertise was recognized internationally when he was invited by the <strong className="font-semibold text-stone-800">Ministry of Public Health, Royal Government of Thailand</strong>, to serve as a consultant and committee member for the national development and formal integration of homeopathy.
-                </p>
+                <p>{t.doctor.bio1}</p>
+                <p>{t.doctor.bio2}</p>
+                <p>{t.doctor.bio3}</p>
               </div>
             </div>
 
             {/* 4 Landmark Institutional Credentials */}
             <div className="space-y-4 pt-2">
               <h3 className="text-xs font-bold uppercase tracking-wider text-stone-900">
-                Institutional Milestones & Accreditations
+                {t.doctor.milestonesHeading}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {credentials.map((cred, idx) => {
@@ -143,25 +140,15 @@ export const DoctorProfile: React.FC<DoctorProfileProps> = ({ onOpenBooking }) =
             {/* Clinical Practice Hallmarks */}
             <div className="pt-2 border-t border-stone-200">
               <h4 className="text-xs font-bold uppercase tracking-wider text-stone-800 mb-3">
-                Core Consultation Tenets
+                {t.doctor.tenetsHeading}
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-stone-700">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-800 shrink-0" />
-                  <span>Comprehensive 45-60 minute initial diagnostic intake</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-800 shrink-0" />
-                  <span>Objective serial blood & radiographic parameter audits</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-800 shrink-0" />
-                  <span>Zero mixing of poly-pharmacy cocktails</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-800 shrink-0" />
-                  <span>Direct patient communication & follow-up tracking</span>
-                </div>
+                {t.doctor.tenets.map((tenet, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-800 shrink-0" />
+                    <span>{tenet}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 import { FAQS } from '../data/clinicData';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export const FaqSection: React.FC = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const { t } = useLanguage();
 
   const toggleAccordion = (idx: number) => {
     setOpenIdx(openIdx === idx ? null : idx);
@@ -15,13 +17,13 @@ export const FaqSection: React.FC = () => {
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-900 mb-2">
             <HelpCircle className="w-4 h-4" />
-            <span>Frequently Asked Questions</span>
+            <span>{t.faq.kicker}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
-            Understanding Our Clinical Care
+            {t.faq.heading}
           </h2>
           <p className="mt-3 text-base text-stone-600 font-light leading-relaxed">
-            Essential guidelines for prospective patients regarding our evidence-based consultation methodology, remedy safety, and treatment integration.
+            {t.faq.description}
           </p>
         </div>
 

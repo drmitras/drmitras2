@@ -2,6 +2,7 @@ import React from 'react';
 import { ShieldCheck, Award, HeartPulse, FileText } from 'lucide-react';
 import { CLINIC_STATS } from '../data/clinicData';
 import heroClinicImage from '../assets/images/hero_dr_mitra_clinic_1794455903171.jpg';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const SHAREPOINT_IMAGE_URL =
   'https://nanomedz4u-my.sharepoint.com/:i:/g/personal/nanomedz_nanomedz4u_onmicrosoft_com/IQDiBidA-hnfQI8g8q_ky_cLATjzUTUhPyjV2HpGz2xoDGI?e=QXN6Qn&download=1';
@@ -11,7 +12,16 @@ interface HeroProps {
   onExploreCases: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreCases }) => {
+export const Hero: React.FC<HeroProps> = ({ onExploreCases }) => {
+  const { t } = useLanguage();
+
+  const localizedStats = [
+    { value: CLINIC_STATS[0].value, label: t.hero.stats.expLabel, subtext: t.hero.stats.expSub },
+    { value: CLINIC_STATS[1].value, label: t.hero.stats.patientsLabel, subtext: t.hero.stats.patientsSub },
+    { value: CLINIC_STATS[2].value, label: t.hero.stats.remissionLabel, subtext: t.hero.stats.remissionSub },
+    { value: CLINIC_STATS[3].value, label: t.hero.stats.ainsworthsLabel, subtext: t.hero.stats.ainsworthsSub },
+  ];
+
   return (
     <section className="relative bg-gradient-to-b from-stone-100/70 via-stone-50 to-stone-100/40 border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
@@ -20,33 +30,35 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreCases }) => 
           {/* Left Column: Clinical Value Proposition */}
           <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
             {/* Quiet Unboxed Metadata Kicker */}
-            <div className="flex items-center gap-2 text-xs font-medium text-stone-600 tracking-wide">
-              <span>National Institute of Homeopathy (India)</span>
+            <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-stone-600 tracking-wide">
+              <span>{t.hero.kickerInst}</span>
               <span aria-hidden="true" className="text-stone-300">·</span>
-              <span>30+ Years Clinical Practice</span>
+              <span>{t.hero.kickerExp}</span>
               <span aria-hidden="true" className="text-stone-300">·</span>
-              <span>Ainsworths UK Sourced</span>
+              <span>{t.hero.kickerSource}</span>
             </div>
 
             {/* Headline with text-wrap balance in Plus Jakarta Sans */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-stone-900 leading-[1.15] max-w-2xl" style={{ textWrap: 'balance' }}>
-              Scientific Nano-Medicine & Clinical Homeopathy for Chronic Illness
+              {t.hero.headline}
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl font-light">
-              Led by <strong className="font-semibold text-stone-800">Dr. Somenath Mitra</strong> (BHMS, NIH), our practice develops research-guided homeopathic protocols targeting complex, autoimmune, oncological palliative, and treatment-resistant diseases with objective laboratory tracking.
+              {t.hero.subtitlePrefix}
+              <strong className="font-semibold text-stone-800">{t.hero.doctorName}</strong>
+              {t.hero.subtitleSuffix}
             </p>
 
             {/* Trust Markers Bar */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs text-stone-700">
               <div className="flex items-center gap-2.5 bg-white/80 border border-stone-200/80 rounded-md p-3">
                 <ShieldCheck className="w-4 h-4 text-emerald-800 shrink-0" />
-                <span>Zero corticosteroids or chemical immunosuppressants</span>
+                <span>{t.hero.trust1}</span>
               </div>
               <div className="flex items-center gap-2.5 bg-white/80 border border-stone-200/80 rounded-md p-3">
                 <Award className="w-4 h-4 text-emerald-800 shrink-0" />
-                <span>Govt of Thailand Homeopathy Advisory Consultant</span>
+                <span>{t.hero.trust2}</span>
               </div>
             </div>
 
@@ -57,13 +69,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreCases }) => 
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-stone-700 bg-white hover:bg-stone-100 hover:text-stone-900 border border-stone-300 active:scale-[0.99] transition-all rounded-md whitespace-nowrap shrink-0 cursor-pointer"
               >
                 <FileText className="w-4 h-4 text-stone-500" />
-                View Documented Case Studies
+                {t.hero.ctaCases}
               </button>
             </div>
 
             {/* Emergency & Prescriptions Compliance Notice */}
             <p className="text-xs text-stone-500 pt-1">
-              * Complementary medical care integrated with standard clinical diagnostics. We do not advise abruptly stopping vital prescription medications.
+              {t.hero.complianceNote}
             </p>
           </div>
 
@@ -85,10 +97,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreCases }) => 
               <div className="absolute bottom-0 inset-x-0 p-5 text-white">
                 <div className="flex items-center gap-2 text-xs font-medium text-emerald-300 mb-1">
                   <HeartPulse className="w-3.5 h-3.5" />
-                  <span>Kolkata Salt Lake & Bangkok Telehealth</span>
+                  <span>{t.hero.badgeLocation}</span>
                 </div>
                 <p className="text-sm font-medium text-stone-100">
-                  Patient-centered medical environment dedicated to root-cause restoration and long-term vitality.
+                  {t.hero.imageCaption}
                 </p>
               </div>
             </div>
@@ -98,7 +110,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreCases }) => 
         {/* Full-Width 4-Column KPI / Trust Proof Strip (Strictly below the hero split per guidelines) */}
         <div className="mt-14 pt-10 border-t border-stone-200/80">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-            {CLINIC_STATS.map((stat, idx) => (
+            {localizedStats.map((stat, idx) => (
               <div key={idx} className="space-y-1">
                 <div className="text-2xl sm:text-3xl font-extrabold text-emerald-950 font-mono tabular-nums">
                   {stat.value}

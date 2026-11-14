@@ -1,7 +1,8 @@
 import React from 'react';
-import { MapPin, Clock, Phone, Globe, Navigation, Building2 } from 'lucide-react';
+import { MapPin, Clock, Phone, Building2 } from 'lucide-react';
 import { CLINIC_LOCATIONS, CLINIC_CONTACT } from '../data/clinicData';
 import clinicInteriorImage from '../assets/images/clinic_location_7XO35d.jpg';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const SHAREPOINT_LOCATION_IMAGE_URL =
   'https://nanomedz4u-my.sharepoint.com/:i:/g/personal/nanomedz_nanomedz4u_onmicrosoft_com/IQDeVX9QRgR2R5bL1BR2NFoSAcW1LQHrhVMV6eF0ZeGhWkI?e=7XO35d&download=1';
@@ -10,22 +11,24 @@ interface LocationsSectionProps {
   onSelectLocationForBooking: (locationName: string) => void;
 }
 
-export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLocationForBooking }) => {
+export const LocationsSection: React.FC<LocationsSectionProps> = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="locations" className="py-16 sm:py-24 bg-stone-100/70 border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <div className="flex items-center gap-2 text-xs font-medium text-emerald-900 tracking-wider uppercase mb-2">
-            <span>Clinical Facilities & Global Access</span>
+            <span>{t.locations.kickerLeft}</span>
             <span aria-hidden="true">·</span>
-            <span>Kolkata & Southeast Asia</span>
+            <span>{t.locations.kickerRight}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
-            Clinic Centers & International Telehealth
+            {t.locations.heading}
           </h2>
           <p className="mt-3 text-base text-stone-600 leading-relaxed font-light">
-            Consult Dr. Somenath Mitra in person at our established clinics in Kolkata or connect from anywhere across the globe through our dedicated telemedicine portal with direct international remedy dispatch.
+            {t.locations.description}
           </p>
         </div>
 
@@ -48,22 +51,22 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
               <div className="p-4 bg-white border-t border-stone-200 text-xs text-stone-600 space-y-1">
                 <div className="font-semibold text-stone-900 flex items-center gap-1.5">
                   <Building2 className="w-4 h-4 text-emerald-800" />
-                  <span>Serene, Hygiene-Monitored Consultation Suites</span>
+                  <span>{t.locations.suiteTitle}</span>
                 </div>
-                <p>Designed for peaceful diagnostic case-taking, comprehensive physical examinations, and temperature-controlled botanical storage.</p>
+                <p>{t.locations.suiteDesc}</p>
               </div>
             </div>
 
             {/* Quick Contact Box */}
             <div className="bg-stone-900 text-stone-100 rounded-lg p-6 space-y-3">
               <div className="text-xs font-semibold tracking-wider uppercase text-emerald-400">
-                Direct Appointment Hotline
+                {t.locations.hotlineLabel}
               </div>
               <div className="text-2xl sm:text-3xl font-mono font-extrabold text-white tabular-nums">
                 {CLINIC_CONTACT.primaryPhone}
               </div>
               <p className="text-xs text-stone-300 leading-relaxed">
-                Our clinical coordinator is available Monday to Saturday to assist with scheduling, medical records review, and prescription dispatch.
+                {t.locations.hotlineDesc}
               </p>
               <div className="pt-2 flex items-center gap-3">
                 <a
@@ -71,7 +74,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
                   className="px-4 py-2 text-xs font-semibold bg-emerald-700 hover:bg-emerald-600 text-white rounded transition-colors inline-flex items-center gap-1.5"
                 >
                   <Phone className="w-3.5 h-3.5" />
-                  Call Clinic
+                  {t.locations.callClinic}
                 </a>
                 <a
                   href={CLINIC_CONTACT.whatsappUrl}
@@ -79,7 +82,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
                   rel="noopener noreferrer"
                   className="px-4 py-2 text-xs font-semibold bg-stone-800 hover:bg-stone-700 text-stone-200 rounded transition-colors inline-flex items-center gap-1.5"
                 >
-                  WhatsApp Assist
+                  {t.locations.whatsappAssist}
                 </a>
               </div>
             </div>
@@ -107,7 +110,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
                   <div className="flex items-start gap-2">
                     <MapPin className="w-4 h-4 text-emerald-800 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-stone-800 block">Address:</strong>
+                      <strong className="text-stone-800 block">{t.locations.addressLabel}</strong>
                       <span>{loc.address}</span>
                       <span className="block text-stone-500 mt-0.5">({loc.landmark})</span>
                     </div>
@@ -116,7 +119,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
                   <div className="flex items-start gap-2">
                     <Clock className="w-4 h-4 text-emerald-800 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-stone-800 block">Consultation Timings:</strong>
+                      <strong className="text-stone-800 block">{t.locations.timingsLabel}</strong>
                       <span>{loc.timings}</span>
                     </div>
                   </div>
@@ -124,7 +127,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ onSelectLoca
 
                 <div className="pt-2 border-t border-stone-100 flex flex-wrap items-center justify-between gap-2 text-xs">
                   <div className="flex flex-wrap items-center gap-1.5 text-stone-500">
-                    <strong className="text-stone-700">Services:</strong>
+                    <strong className="text-stone-700">{t.locations.servicesLabel}</strong>
                     {loc.consultationModes.map((mode, i) => (
                       <span key={i} className="bg-stone-50 px-2 py-0.5 rounded border border-stone-200">
                         {mode}

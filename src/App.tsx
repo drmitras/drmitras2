@@ -13,6 +13,7 @@ import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
 import { CLINIC_CONTACT } from './data/clinicData';
 import { MessageSquare } from 'lucide-react';
+import { LanguageProvider } from './i18n/LanguageContext';
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -34,80 +35,82 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-900 font-sans-clean flex flex-col selection:bg-emerald-900 selection:text-white">
-      {/* Primary Navigation Bar (3-Zone Contract) */}
-      <Header
-        onOpenBooking={() => handleOpenBooking()}
-        activeSection={activeSection}
-      />
-
-      {/* Main Page Flow */}
-      <main className="flex-1">
-        {/* Hero Section with Clinic Overview & Metrics */}
-        <Hero
+    <LanguageProvider>
+      <div className="min-h-screen bg-stone-50 text-stone-900 font-sans-clean flex flex-col selection:bg-emerald-900 selection:text-white">
+        {/* Primary Navigation Bar (3-Zone Contract) */}
+        <Header
           onOpenBooking={() => handleOpenBooking()}
-          onExploreCases={handleExploreCases}
+          activeSection={activeSection}
         />
 
-        {/* Specialised Conditions & Protocols Catalog */}
-        <ConditionsSection
-          onSelectConditionForBooking={(condition) => handleOpenBooking(condition)}
-        />
+        {/* Main Page Flow */}
+        <main className="flex-1">
+          {/* Hero Section with Clinic Overview & Metrics */}
+          <Hero
+            onOpenBooking={() => handleOpenBooking()}
+            onExploreCases={handleExploreCases}
+          />
 
-        {/* Doctor Biography & Credentials (Dr. Somenath Mitra) */}
-        <DoctorProfile
+          {/* Specialised Conditions & Protocols Catalog */}
+          <ConditionsSection
+            onSelectConditionForBooking={(condition) => handleOpenBooking(condition)}
+          />
+
+          {/* Doctor Biography & Credentials (Dr. Somenath Mitra) */}
+          <DoctorProfile
+            onOpenBooking={() => handleOpenBooking()}
+          />
+
+          {/* Scientific Foundations: Nano-Dilutions & Ainsworths UK Standards */}
+          <ResearchSection />
+
+          {/* Documented Clinical Case Studies & Laboratory Metrics */}
+          <CaseStudiesSection
+            onOpenBooking={() => handleOpenBooking()}
+          />
+
+          {/* Global Outreach, Thailand Government Advisory & Humanitarian Relief */}
+          <GlobalOutreach />
+
+          {/* Verified Patient Outcomes & Reviews */}
+          <TestimonialsSection />
+
+          {/* Clinic Locations: Kolkata Salt Lake, VIP Road & Bangkok */}
+          <LocationsSection
+            onSelectLocationForBooking={(location) => handleOpenBooking('', location)}
+          />
+
+          {/* Frequently Asked Questions */}
+          <FaqSection />
+        </main>
+
+        {/* Compliant Medical Footer */}
+        <Footer
           onOpenBooking={() => handleOpenBooking()}
         />
 
-        {/* Scientific Foundations: Nano-Dilutions & Ainsworths UK Standards */}
-        <ResearchSection />
-
-        {/* Documented Clinical Case Studies & Laboratory Metrics */}
-        <CaseStudiesSection
-          onOpenBooking={() => handleOpenBooking()}
+        {/* Interactive Consultation Booking Engine */}
+        <BookingModal
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+          preselectedCondition={selectedCondition}
+          preselectedLocation={selectedLocation}
         />
 
-        {/* Global Outreach, Thailand Government Advisory & Humanitarian Relief */}
-        <GlobalOutreach />
-
-        {/* Verified Patient Outcomes & Reviews */}
-        <TestimonialsSection />
-
-        {/* Clinic Locations: Kolkata Salt Lake, VIP Road & Bangkok */}
-        <LocationsSection
-          onSelectLocationForBooking={(location) => handleOpenBooking('', location)}
-        />
-
-        {/* Frequently Asked Questions */}
-        <FaqSection />
-      </main>
-
-      {/* Compliant Medical Footer */}
-      <Footer
-        onOpenBooking={() => handleOpenBooking()}
-      />
-
-      {/* Interactive Consultation Booking Engine */}
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-        preselectedCondition={selectedCondition}
-        preselectedLocation={selectedLocation}
-      />
-
-      {/* Floating WhatsApp Quick Clinical Assist Pill (Quiet bottom right) */}
-      <aside aria-label="Quick contact" className="fixed bottom-5 right-5 z-40 hidden sm:flex items-center gap-2">
-        <a
-          href={CLINIC_CONTACT.whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2.5 bg-emerald-800 hover:bg-emerald-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all text-xs font-semibold"
-          aria-label="Direct WhatsApp message to clinic"
-        >
-          <MessageSquare className="w-4 h-4 fill-current" />
-          <span>WhatsApp Clinic Assist</span>
-        </a>
-      </aside>
-    </div>
+        {/* Floating WhatsApp Quick Clinical Assist Pill (Quiet bottom right) */}
+        <aside aria-label="Quick contact" className="fixed bottom-5 right-5 z-40 hidden sm:flex items-center gap-2">
+          <a
+            href={CLINIC_CONTACT.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2.5 bg-emerald-800 hover:bg-emerald-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all text-xs font-semibold"
+            aria-label="Direct WhatsApp message to clinic"
+          >
+            <MessageSquare className="w-4 h-4 fill-current" />
+            <span>WhatsApp Clinic Assist</span>
+          </a>
+        </aside>
+      </div>
+    </LanguageProvider>
   );
 }

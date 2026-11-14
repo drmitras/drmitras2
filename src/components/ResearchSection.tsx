@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { Microscope, Shield, Dna, FileCheck, Layers, Sparkles } from 'lucide-react';
 import researchLabImage from '../assets/images/nano_homeopathy_research_lab_1794455905369.jpg';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const SHAREPOINT_RESEARCH_IMAGE_URL =
   'https://nanomedz4u-my.sharepoint.com/:i:/g/personal/nanomedz_nanomedz4u_onmicrosoft_com/IQBsRRhB0AhdSI3HlHQmjWzRAUMPltTRAlMTJSvp4KI3KmU?e=vnpZz7&download=1';
 
 export const ResearchSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'nanoparticles' | 'hormesis' | 'sourcing' | 'monitoring'>('nanoparticles');
+  const { t } = useLanguage();
 
   const tabs = [
-    { id: 'nanoparticles', label: 'Nanoparticle Physics' },
-    { id: 'hormesis', label: 'Hormesis & Bio-Signaling' },
-    { id: 'sourcing', label: 'Ainsworths UK Standards' },
-    { id: 'monitoring', label: 'Laboratory Diagnostics' },
+    { id: 'nanoparticles', label: t.research.tabs.nanoparticles },
+    { id: 'hormesis', label: t.research.tabs.hormesis },
+    { id: 'sourcing', label: t.research.tabs.sourcing },
+    { id: 'monitoring', label: t.research.tabs.monitoring },
   ] as const;
 
   return (
@@ -21,15 +23,15 @@ export const ResearchSection: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <div className="flex items-center gap-2 text-xs font-medium text-emerald-900 tracking-wider uppercase mb-2">
-            <span>Biophysical Research & Pharmacology</span>
+            <span>{t.research.kickerLeft}</span>
             <span aria-hidden="true">·</span>
-            <span>Science-Backed Protocols</span>
+            <span>{t.research.kickerRight}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
-            The Science of Nano-Dilutions in Clinical Medicine
+            {t.research.heading}
           </h2>
           <p className="mt-3 text-base text-stone-600 leading-relaxed font-light">
-            Modern pharmacology is increasingly validating what classical homeopathy observed empirically: ultra-dilute preparations act as epigenetic and cellular bio-signals rather than bulk chemical suppressors.
+            {t.research.description}
           </p>
         </div>
 
@@ -52,9 +54,9 @@ export const ResearchSection: React.FC = () => {
               <div className="p-4 bg-stone-50 border-t border-stone-200 text-xs text-stone-600">
                 <div className="flex items-center gap-2 font-semibold text-stone-900 mb-1">
                   <Microscope className="w-4 h-4 text-emerald-800" />
-                  <span>Nanoscale Characterisation</span>
+                  <span>{t.research.captionTitle}</span>
                 </div>
-                Analytical methods including Transmission Electron Microscopy (TEM) and Dynamic Light Scattering (DLS) confirm stable nanoparticle presence in serially agitated dilutions.
+                {t.research.captionDesc}
               </div>
             </div>
 
@@ -62,8 +64,8 @@ export const ResearchSection: React.FC = () => {
             <div className="p-4 rounded-md border border-stone-200 bg-stone-50 flex items-start gap-3">
               <Shield className="w-5 h-5 text-emerald-900 shrink-0 mt-0.5" />
               <div className="text-xs text-stone-700">
-                <strong className="text-stone-900 font-semibold block">Exclusive Sourcing from Ainsworths (London, UK)</strong>
-                Established in 1867, Ainsworths holds Royal Warrants to HM The King and HM Queen Elizabeth The Queen Mother. All preparations are strictly non-genetically modified and verified pure.
+                <strong className="text-stone-900 font-semibold block">{t.research.sourcingTitle}</strong>
+                {t.research.sourcingDesc}
               </div>
             </div>
           </div>

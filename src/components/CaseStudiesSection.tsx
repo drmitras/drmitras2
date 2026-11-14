@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { FileText, ArrowUpRight, CheckCircle2, TrendingDown, TrendingUp } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, TrendingDown, TrendingUp } from 'lucide-react';
 import { CASE_STUDIES } from '../data/clinicData';
 import { CaseStudyItem } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface CaseStudiesSectionProps {
   onOpenBooking: () => void;
@@ -9,6 +10,7 @@ interface CaseStudiesSectionProps {
 
 export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenBooking }) => {
   const [selectedCase, setSelectedCase] = useState<CaseStudyItem>(CASE_STUDIES[0]);
+  const { t } = useLanguage();
 
   return (
     <section id="case-studies" className="py-16 sm:py-24 bg-stone-100/60 border-b border-stone-200">
@@ -16,15 +18,15 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenBo
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <div className="flex items-center gap-2 text-xs font-medium text-emerald-900 tracking-wider uppercase mb-2">
-            <span>Evidence & Outcome Documentation</span>
+            <span>{t.caseStudies.kickerLeft}</span>
             <span aria-hidden="true">·</span>
-            <span>Documented Medical Records</span>
+            <span>{t.caseStudies.kickerRight}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
-            Documented Clinical Case Studies
+            {t.caseStudies.heading}
           </h2>
           <p className="mt-3 text-base text-stone-600 leading-relaxed font-light">
-            Review detailed case trajectories from Dr. Mitra’s archives showcasing objective pre- and post-treatment laboratory benchmarks across refractory autoimmune, hematological, and chronic ailments.
+            {t.caseStudies.description}
           </p>
         </div>
 
@@ -33,7 +35,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenBo
           {/* Left Column: Selectable Case Thumbnails */}
           <div className="lg:col-span-5 space-y-3">
             <span className="text-xs font-bold uppercase tracking-wider text-stone-500 block px-1">
-              Select Patient Case
+              {t.caseStudies.selectCase}
             </span>
             {CASE_STUDIES.map((item) => (
               <div
@@ -47,7 +49,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenBo
               >
                 <div className="flex items-center justify-between text-xs text-stone-500 mb-1">
                   <span>{item.timeline}</span>
-                  <span className="text-emerald-900 font-medium">Verified Case</span>
+                  <span className="text-emerald-900 font-medium">{t.caseStudies.verifiedCase}</span>
                 </div>
                 <h3 className="text-sm font-semibold text-stone-900">
                   {item.condition}
@@ -56,7 +58,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenBo
                   {item.patientAgeGender}
                 </div>
                 <div className="mt-3 pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
-                  <span className="text-stone-500">Post-Treatment:</span>
+                  <span className="text-stone-500">{t.caseStudies.postTreatment}</span>
                   <span className="font-semibold text-emerald-900 tabular-nums">
                     {item.finalMetrics.value}
                   </span>
@@ -90,7 +92,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenBo
                 <div className="text-lg font-mono font-bold text-stone-900 tabular-nums">
                   {selectedCase.initialMetrics.value}
                 </div>
-                <div className="text-xs text-stone-500">Pre-treatment clinical baseline</div>
+                <div className="text-xs text-stone-500">{t.caseStudies.baselineSub}</div>
               </div>
 
               <div className="space-y-1 sm:border-l sm:border-stone-200 sm:pl-4">
@@ -101,7 +103,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenBo
                 <div className="text-lg font-mono font-bold text-emerald-950 tabular-nums">
                   {selectedCase.finalMetrics.value}
                 </div>
-                <div className="text-xs text-emerald-700 font-medium">Verified remission outcome</div>
+                <div className="text-xs text-emerald-700 font-medium">{t.caseStudies.remissionSub}</div>
               </div>
             </div>
 
@@ -109,21 +111,21 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenBo
             <div className="space-y-4 text-xs sm:text-sm text-stone-700">
               <div>
                 <strong className="text-xs font-bold uppercase tracking-wider text-stone-900 block mb-1">
-                  Presenting Clinical History & Symptoms
+                  {t.caseStudies.historyHeading}
                 </strong>
                 <p className="text-stone-600 leading-relaxed">{selectedCase.presentingComplaint}</p>
               </div>
 
               <div>
                 <strong className="text-xs font-bold uppercase tracking-wider text-stone-900 block mb-1">
-                  Prior Interventions & Conventional Failures
+                  {t.caseStudies.priorHeading}
                 </strong>
                 <p className="text-stone-600 leading-relaxed">{selectedCase.priorTreatments}</p>
               </div>
 
               <div>
                 <strong className="text-xs font-bold uppercase tracking-wider text-stone-900 block mb-1">
-                  Homeopathic Formulation Protocol Administered
+                  {t.caseStudies.protocolHeading}
                 </strong>
                 <p className="text-stone-600 leading-relaxed bg-stone-50 p-3 rounded border border-stone-200">
                   {selectedCase.remedyApproach}
@@ -132,7 +134,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenBo
 
               <div>
                 <strong className="text-xs font-bold uppercase tracking-wider text-stone-900 block mb-1">
-                  Clinical Outcome & Longevity
+                  {t.caseStudies.outcomeHeading}
                 </strong>
                 <p className="text-stone-800 font-medium leading-relaxed">
                   {selectedCase.outcomeSummary}
@@ -150,7 +152,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onOpenBo
                 onClick={onOpenBooking}
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-900 hover:text-emerald-700 transition-colors"
               >
-                Inquire For Similar Condition
+                {t.caseStudies.inquireCta}
                 <ArrowUpRight className="w-4 h-4" />
               </button>
             </div>

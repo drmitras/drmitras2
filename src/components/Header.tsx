@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
-import { Menu, X, PhoneCall } from 'lucide-react';
+import { Menu, X, PhoneCall, Globe } from 'lucide-react';
 import { CLINIC_CONTACT } from '../data/clinicData';
+import { useLanguage } from '../i18n/LanguageContext';
+import { Language } from '../i18n/translations';
 
 interface HeaderProps {
   onOpenBooking: () => void;
   activeSection: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
+const LANGUAGE_OPTIONS: { code: Language; label: string; nativeName: string }[] = [
+  { code: 'en', label: 'EN', nativeName: 'English' },
+  { code: 'th', label: 'ไทย', nativeName: 'ภาษาไทย' },
+  { code: 'bn', label: 'বাংলা', nativeName: 'বাংলা' },
+];
+
+export const Header: React.FC<HeaderProps> = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   const navLinks = [
-    { label: 'Conditions & Care', href: '#conditions' },
-    { label: 'About Dr. Mitra', href: '#about-doctor' },
-    { label: 'Nano-Research', href: '#research' },
-    { label: 'Case Studies', href: '#case-studies' },
-    { label: 'Clinic Locations', href: '#locations' },
+    { label: t.header.navConditions, href: '#conditions' },
+    { label: t.header.navDoctor, href: '#about-doctor' },
+    { label: t.header.navResearch, href: '#research' },
+    { label: t.header.navCaseStudies, href: '#case-studies' },
+    { label: t.header.navLocations, href: '#locations' },
   ];
 
   return (
@@ -24,11 +33,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
       <div className="bg-stone-900 text-stone-200 text-xs py-1.5 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 truncate">
-            <span className="font-semibold text-emerald-400">Dr. Mitra's® Practice</span>
+            <span className="font-semibold text-emerald-400">{t.header.practiceLabel}</span>
             <span className="hidden sm:inline text-stone-400">·</span>
-            <span className="hidden sm:inline text-stone-300">National Institute of Homeopathy Alumnus</span>
+            <span className="hidden sm:inline text-stone-300">{t.header.alumnusLabel}</span>
             <span className="hidden md:inline text-stone-400">·</span>
-            <span className="hidden md:inline text-stone-300">Kolkata & Bangkok Clinics</span>
+            <span className="hidden md:inline text-stone-300">{t.header.clinicsLabel}</span>
           </div>
           <div className="flex items-center gap-4 shrink-0 text-stone-300">
             <a
@@ -43,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
       </div>
 
       {/* Primary Top Bar (Strict 3-zone Contract) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 lg:gap-8">
         {/* Zone 1: Brand title wordmark */}
         <a
           href="#"
@@ -54,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
         </a>
 
         {/* Zone 2: 4-5 single-line clean navigation links */}
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-stone-700">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-stone-700">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -66,12 +75,39 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           ))}
         </nav>
 
-        {/* Mobile menu button */}
-        <div className="flex items-center gap-2 lg:hidden">
+        {/* Zone 3: Language Toggle & Mobile Menu Button */}
+        <div className="flex items-center gap-2 shrink-0">
+          <div
+            role="group"
+            aria-label={t.header.languageLabel}
+            className="inline-flex items-center rounded-md border border-stone-200 bg-white p-0.5 shadow-2xs"
+          >
+            <Globe className="hidden sm:block w-3.5 h-3.5 text-stone-400 ml-1.5 mr-1 shrink-0" aria-hidden="true" />
+            {LANGUAGE_OPTIONS.map((opt) => {
+              const isActive = language === opt.code;
+              return (
+                <button
+                  key={opt.code}
+                  type="button"
+                  onClick={() => setLanguage(opt.code)}
+                  aria-pressed={isActive}
+                  title={opt.nativeName}
+                  className={`px-2 py-1 text-[11px] sm:text-xs rounded transition-colors cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? 'bg-emerald-900 text-white font-semibold'
+                      : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100 font-medium'
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
-            className="p-2 text-stone-700 hover:text-stone-900 focus:outline-none"
+            className="lg:hidden p-2 text-stone-700 hover:text-stone-900 focus:outline-none"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -102,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-emerald-900 rounded-md"
             >
               <PhoneCall className="w-4 h-4" />
-              Call / WhatsApp - 8777507722
+              {t.header.mobileCallCta}
             </button>
           </div>
         </div>
