@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, PhoneCall, Calendar } from 'lucide-react';
+import { Menu, X, PhoneCall } from 'lucide-react';
 import { CLINIC_CONTACT } from '../data/clinicData';
 
 interface HeaderProps {
@@ -97,12 +97,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenBooking();
+                window.location.href = `tel:${CLINIC_CONTACT.primaryPhone.replace(/\s+/g, '')}`;
               }}
               className="w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-emerald-900 rounded-md"
             >
-              <Calendar className="w-4 h-4" />
-              Schedule Online or In-Clinic Visit
+              <PhoneCall className="w-4 h-4" />
+              Call / WhatsApp - 8777507722
             </button>
           </div>
         </div>
