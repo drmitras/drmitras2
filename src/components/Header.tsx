@@ -13,6 +13,7 @@ const LANGUAGE_OPTIONS: { code: Language; label: string; nativeName: string }[] 
   { code: 'en', label: 'EN', nativeName: 'English' },
   { code: 'th', label: 'ไทย', nativeName: 'ภาษาไทย' },
   { code: 'bn', label: 'বাংলা', nativeName: 'বাংলা' },
+  { code: 'hi', label: 'हिन्दी', nativeName: 'हिन्दी' },
 ];
 
 export const Header: React.FC<HeaderProps> = () => {
@@ -92,7 +93,7 @@ export const Header: React.FC<HeaderProps> = () => {
                   onClick={() => setLanguage(opt.code)}
                   aria-pressed={isActive}
                   title={opt.nativeName}
-                  className={`px-2 py-1 text-[11px] sm:text-xs rounded transition-colors cursor-pointer whitespace-nowrap ${
+                  className={`px-1.5 sm:px-2 py-1 text-[11px] sm:text-xs rounded transition-colors cursor-pointer whitespace-nowrap ${
                     isActive
                       ? 'bg-emerald-900 text-white font-semibold'
                       : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100 font-medium'
