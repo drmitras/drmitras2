@@ -38,8 +38,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCases }) => {
               <span>{t.hero.kickerSource}</span>
             </div>
 
-            {/* Headline with text-wrap balance in Plus Jakarta Sans */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-stone-900 leading-[1.15] max-w-2xl" style={{ textWrap: 'balance' }}>
+            {/* Headline with text-wrap balance in Inter */}
+            <h1 className="font-['Inter','Noto_Sans_Thai','Noto_Sans_Bengali','Noto_Sans_Devanagari',sans-serif] text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-stone-900 leading-[1.15] max-w-2xl" style={{ textWrap: 'balance' }}>
               {t.hero.headline}
             </h1>
 

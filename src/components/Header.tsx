@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = () => {
           href="#"
           className="hover:text-emerald-900 transition-colors whitespace-nowrap shrink-0 flex items-center"
         >
-          <span className="font-jashvee text-[27px] sm:text-[30px] font-black tracking-[-1px] text-stone-900">Dr. Mitra's</span>
+          <span className="font-['Inter',sans-serif] text-[27px] sm:text-[30px] font-black tracking-[-1px] text-stone-900">Dr. Mitra's</span>
           <sup className="text-xs text-emerald-700 font-bold ml-0.5">®</sup>
         </a>
 
