@@ -112,7 +112,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCases }) => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {localizedStats.map((stat, idx) => (
               <div key={idx} className="space-y-1">
-                <div className="text-2xl sm:text-3xl font-extrabold text-emerald-950 font-mono tabular-nums">
+                <div className="font-['Inter',sans-serif] text-2xl sm:text-3xl font-extrabold text-emerald-950 tabular-nums">
                   {stat.value}
                 </div>
                 <div className="text-xs sm:text-sm font-medium text-stone-800">
