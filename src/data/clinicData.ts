@@ -7,6 +7,12 @@ export const CLINIC_CONTACT = {
   website: 'https://www.drmitras.com',
   whatsappUrl: 'https://wa.me/918777507722?text=Hello%20Dr.%20Mitra%27s%20Clinic,%20I%20would%20like%20to%20inquire%20about%20a%20consultation',
   headquarters: 'ARC Clinic, GD-16, Sector - 3, Salt Lake City, Kolkata - 700106, West Bengal, India',
+  socialUrls: {
+    facebook: 'https://www.facebook.com/drmitras',
+    linkedin: 'https://www.linkedin.com/company/drmitras',
+    youtube: 'https://www.youtube.com/@drmitras',
+    x: 'https://x.com/drmitras',
+  },
 };
 
 export const CLINIC_STATS = [
